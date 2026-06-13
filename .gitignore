@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+ostlandet.gpkg
+./cat_GPS_data
+*.csv
