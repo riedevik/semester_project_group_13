@@ -1,6 +1,6 @@
 ---
-title: Patterns in Domestic Cat Movement Data
-subtitle: Semesterproject Group 13
+title: Muster in Bewegungsdaten von Hauskatzen
+subtitle: Semesterprojekt Gruppe 13
 author: Anna Kessler, Viktoria Rieder
 date: today
 format:
@@ -985,7 +985,7 @@ check <- cat_meets %>%
 
 ## Aktivitätsmuster
 
-Die Analyse der Geschwindigkeit und zurückgelegten Distanz als Proxy für die Aktivität zeigt Unterschiede zwischen den Tageszeiten. Auf Basis der katzenspezifischen Mittelwerte waren die untersuchten Katzen während der Nacht und der Abenddämmerung am aktivsten (Abb. 1). Die höchsten mittleren Geschwindigkeiten waren nachts (0.087 m/s) und während der Abenddämmerung (0.086 m/s), während sie tagsüber bei 0.074 m/s und in der Morgendämmerung bei 0.071 m/s lagen. Ein vergleichbares Muster zeigt sich bei der zurückgelegten Distanz pro Stunde (Nacht: 313 m/h, Abenddämmerung: 310 m/h, Tag: 267 m/h, Morgendämmerung: 255 m/h). Gleichzeitig zeigt sich eine hohe individuelle Variabilität zwischen den Katzen (siehe Abb. 1).
+Die Analyse der Geschwindigkeit und zurückgelegten Distanz als Proxy für die Aktivität zeigt Unterschiede zwischen den Tageszeiten. Auf Basis der katzenspezifischen Mittelwerte waren die untersuchten Katzen während der Nacht und der Abenddämmerung am aktivsten (siehe @fig-plot1). Die höchsten mittleren Geschwindigkeiten waren nachts (0.087 m/s) und während der Abenddämmerung (0.086 m/s), während sie tagsüber bei 0.074 m/s und in der Morgendämmerung bei 0.071 m/s lagen. Ein vergleichbares Muster zeigt sich bei der zurückgelegten Distanz pro Stunde (Nacht: 313 m/h, Abenddämmerung: 310 m/h, Tag: 267 m/h, Morgendämmerung: 255 m/h). Gleichzeitig zeigt sich eine hohe individuelle Variabilität zwischen den Katzen (@fig-plot1).
 
 ```{r}
 ###############################
@@ -1136,7 +1136,7 @@ boxplot_speed + boxplot_distance +
 
 ## Home Ranges
 
-Die Ergebnisse zeigen deutliche Unterschiede in der Grösse der Home Ranges (KDE 95%) zwischen den untersuchten Katzen (Min. 0.2 ha, Median 1.5 ha, Max. 377 ha). Die Sensitivitätsanalyse mit der 80 %-KDE führte erwartungsgemäss zu kleineren Flächenwerten, bestätigte jedoch die grundsätzlichen Muster der Analyse (siehe Abb. 2). 
+Die Ergebnisse zeigen deutliche Unterschiede in der Grösse der Home Ranges (KDE 95%) zwischen den untersuchten Katzen (Min. 0.2 ha, Median 1.5 ha, Max. 377 ha). Die Sensitivitätsanalyse mit der 80 %-KDE führte erwartungsgemäss zu kleineren Flächenwerten, bestätigte jedoch die grundsätzlichen Muster der Analyse (siehe @fig-plot2). 
 
 ```{r}
 ###############################
@@ -1172,7 +1172,7 @@ p95 + p80 +
   plot_layout(ncol = 2)
 ```
 
-Die Verteilung der Flächengrössen war stark rechtsschief. Wie in Abb. 3 sichtbar, ist dies auf wenige Individuen mit aussergewöhnlich grossen Home Ranges zurückzuführen.
+Die Verteilung der Flächengrössen war stark rechtsschief. Wie in @fig-plot3 sichtbar, ist dies auf wenige Individuen mit aussergewöhnlich grossen Home Ranges zurückzuführen. sichtbar, ist dies auf wenige Individuen mit aussergewöhnlich grossen Home Ranges zurückzuführen.
 
 ```{r}
 ###############################
@@ -1304,7 +1304,7 @@ options(repr.plot.width = 10, repr.plot.height = 7)
 barplot_hr_class
 ```
 
-Der Vergleich zwischen urbanen und ländlichen Katzen deutet darauf hin, dass ländliche Katzen tendenziell grössere Home Ranges und eine stärkere Variabilität aufweisen als urbane Katzen. Urbane Katzen nutzten dagegen kleinere und räumlich stärker konzentrierte Gebiete (Abb. 4).
+Der Vergleich zwischen urbanen und ländlichen Katzen deutet darauf hin, dass ländliche Katzen tendenziell grössere Home Ranges und eine stärkere Variabilität aufweisen als urbane Katzen. Urbane Katzen nutzten dagegen kleinere und räumlich stärker konzentrierte Gebiete (siehe @fig-plot4).
 
 ```{r}
 ###############################
@@ -1409,7 +1409,7 @@ boxplot_hr_class + plot_hr_class +
 
 ## Begegnungen
 
-Die Analyse identifiziert mehrere Begegnungen zwischen Katzenpaaren. Die Häufigkeit  dieser Ereignisse variiert stark zwischen den Individuen. Zeitlich traten Begegnungen besonders häufig in der Nacht sowie am Morgen und späten Abend auf, während in den frühen Morgenstunden weniger Begegnungen registriert wurden (Abb. 5).
+Die Analyse identifiziert mehrere Begegnungen zwischen Katzenpaaren. Die Häufigkeit  dieser Ereignisse variiert stark zwischen den Individuen. Zeitlich traten Begegnungen besonders häufig in der Nacht sowie am Morgen und späten Abend auf, während in den frühen Morgenstunden weniger Begegnungen registriert wurden (siehe @fig-plot5).
 
 ```{r}
 ###############################
@@ -1528,7 +1528,7 @@ options(repr.plot.width = 10, repr.plot.height = 9)
 plot_meet_hour
 ```
 
-Die räumliche Analyse zeigt zudem, dass die Anzahl der Begegnungen mit zunehmender Überlappung zunächst ansteigt, jedoch bei mittlerer Überlappung von 3 Home Ranges ein Maximum erreicht und ab 4 Überlappungen wieder abnimmt. (Siehe Abb. 6, rechts) Insgesamt deuten die Ergebnisse darauf hin, dass räumliche Nähe und gemeinsame Raumnutzung die Wahrscheinlichkeit von Begegnungen erhöhen, die Verteilung der Begegnungen jedoch stark heterogen über die Katzenpaare ist (siehe Abb. 6, links).
+Die räumliche Analyse zeigt zudem, dass die Anzahl der Begegnungen mit zunehmender Überlappung zunächst ansteigt, jedoch bei mittlerer Überlappung von 3 Home Ranges ein Maximum erreicht und ab 4 Überlappungen wieder abnimmt (siehe @fig-plot6, rechts). Insgesamt deuten die Ergebnisse darauf hin, dass räumliche Nähe und gemeinsame Raumnutzung die Wahrscheinlichkeit von Begegnungen erhöhen, die Verteilung der Begegnungen jedoch stark heterogen über die Katzenpaare ist (siehe @fig-plot6, links).
 
 ```{r}
 ###############################
