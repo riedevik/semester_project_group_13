@@ -163,26 +163,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="abstract" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
-<p>In dieser Arbeit werden GPS-Daten von 92 Katzen aus dem Raum Ás (Norwegen) im Rahmen der Computational Movement Analysis (CMA) untersucht. Analysiert werden tageszeitliche Aktivitätsmuster, Home Ranges sowie raumzeitliche Begegnungen. Die Resultate zeigen erhöhte Aktivität in der Abenddämmerung und in der Nacht, deutliche Unterschiede in der Home Range-Grösse (insbesondere urbane vs.&nbsp;ländliche Katzen-Typen) sowie mehr Begegnungen in überlappenden Home Ranges, deren Häufigkeit jedoch bei mehr als drei Überlappungen wieder abnimmt. Insgesamt verdeutlichen die Ergebnisse sowohl Möglichkeiten als auch Grenzen GPS-basierter Bewegungsanalysen.</p>
+<p>In dieser Arbeit werden GPS-Daten von 92 Katzen aus dem Raum Ås (Norwegen) im Rahmen der Computational Movement Analysis (CMA) untersucht. Analysiert werden tageszeitliche Aktivitätsmuster, Home Ranges sowie Begegnungen zwischen den Katzen. Die Ergebnisse zeigen erhöhte Aktivität in der Abenddämmerung und der Nacht sowie grosse individuelle Unterschiede in der Grösse der Home Ranges. Zudem unterscheiden sich die geschätzten Home-Range-Grössen zwischen als urban und ländlich klassifizierten Katzen. Die Analyse zeigte, dass Begegnungen räumlich häufig in Bereichen mit überlappenden Home Ranges liegen. Insgesamt verdeutlichen die Ergebnisse das Potenzial GPS-basierter Bewegungsanalysen, zeigen aber auch methodische Grenzen hinsichtlich zeitlicher Auflösung, räumlicher Genauigkeit und biologischer Interpretation.</p>
 </section>
 <section id="einleitung" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Einleitung</h1>
-<p>Katzen sind Raubtiere, deren Bewegungsverhalten entscheidend für das Verständnis ihrer Raumnutzung und ökologischen Auswirkungen ist, was sie besonders geeignet für Bewegungsanalysen macht (Bischof et al., 2022). Bewegungsdaten wie GPS-Daten liefern dabei raumzeitliche Informationen, die sowohl Positionen als auch deren Veränderung über die Zeit beschreiben und typisch sind in der Computational Movement Analysis (CMA) (Laube, 2014; Dodge et al., 2013). In diesem Projekt werden GPS-Daten von 92 Katzen im Raum Ás (nahe Oslo) analysiert. Ziel ist die Untersuchung ihres Bewegungsverhaltens anhand verschiedener Methoden der Bewegungsanalyse. Im Zentrum stehen drei Forschungsfragen (RQ):</p>
+<p>Katzen sind Raubtiere, deren Bewegungsverhalten entscheidend für das Verständnis ihrer Raumnutzung und ökologischen Auswirkungen ist, was sie besonders geeignet für Bewegungsanalysen macht (Bischof et al., 2022). Bewegungsdaten wie GPS-Daten liefern dabei raumzeitliche Informationen, die sowohl Positionen als auch deren Veränderung über die Zeit beschreiben und typisch für die Computational Movement Analysis (CMA) sind (Laube, 2014; Dodge et al., 2013). In diesem Projekt werden GPS-Daten von 92 Katzen im Raum Ås (nahe Oslo) analysiert. Ziel ist die Untersuchung ihres Bewegungsverhaltens anhand verschiedener Methoden der Bewegungsanalyse. Im Zentrum stehen drei Forschungsfragen (RQ):</p>
 <ul>
 <li>RQ1: Zu welcher Tageszeit sind Katzen am aktivsten?</li>
 <li>RQ2: Wie gross sind die Streifgebiete der Katzen und wie stark unterscheiden sie sich zwischen Individuen?</li>
 <li>RQ3: Wie häufig begegnen sich Katzen bei einer bestimmten Katzendichte?</li>
 </ul>
-<p>Katzen gelten als überwiegend dämmerungs- und nachtaktive Tiere, deren Aktivität stark von Lichtbedingungen beeinflusst wird (Merčnik et al., 2023). Sie werden oft als territorial eingeschätzt - die Literatur zeigt jedoch, dass territoriales Verhalten kontextabhängig ist und nicht bei allen Katzen gleich ausgeprägt auftritt (Crowell-Davis et al., 2004).</p>
+<p>Katzen gelten als überwiegend dämmerungs- und nachtaktive Tiere, deren Aktivität stark von Lichtbedingungen beeinflusst wird (Merčnik et al., 2023). Sie werden oft als territorial eingeschätzt; die Literatur zeigt jedoch, dass territoriales Verhalten kontextabhängig ist und nicht bei allen Katzen gleich ausgeprägt auftritt (Crowell-Davis et al., 2004).</p>
 <p>Das Konzept der Home Range beschreibt den regelmässig genutzten Lebensraum eines Tieres zur Nutzung essenzieller Ressourcen (Powell und Mitchell, 2012). GPS-basierte Methoden erlauben präzise Schätzungen, etwa mittels der Kernel Density-Methode (Worton, 1989), welche in dieser Arbeit verwendet wird.</p>
 </section>
 <section id="material-und-methoden" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Material und Methoden</h1>
 <section id="daten" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="daten"><span class="header-section-number">3.1</span> Daten</h2>
-<p>Für die Analyse wurde der öffentlich auf GitHub verfügbare Datensatz <strong><a href="https://github.com/richbi/CatTrack_public">CatTrack_public</a></strong> verwendet, der GPS-Daten von 92 Katzen im Raum Oslo (Ás) enthält. Die Daten umfassen Zeitdaten sowie räumliche Positionen der Katzen während des Monats Mai 2021 und sind mit einem unbekannten räumlichen Versatz ausgestattet, um die Anonymität der Katzenbesitzer*innen zu wahren.</p>
-<p>Die GPS-Katzendaten entsprechen der Lagrange-Perspektive, welche es ermöglicht, Individuen kontinuierlich zu verfolgen. Sie erlaubt die Analyse individueller Bewegungsmuster wie Distanz, Geschwindigkeit und Aufenthaltsgebiete (Laube, 2017). .</p>
-<p>Für die Unterteilung der Tageszeiten wurden zusätzlich <a href="https://www.timeanddate.com/sun/norway/oslo?month=5&amp;year=2021">tages- und ortspezifische Informationen</a> zu Sonnenauf- und untergang sowie den Morgen- und Abenddämmerungszeiten integriert. Um die Home Ranges nach Katzentyp (urban/ländlich) unterscheiden zu können, wurden Daten aus <a href="https://download.geofabrik.de/europe/norway.html?utm">OpenStreetMap</a> zur Identifikation der Landschaftstypen hinzugezogen.</p>
+<p>Für die Analyse wurde der öffentlich auf GitHub verfügbare Datensatz <strong><a href="https://github.com/richbi/CatTrack_public">CatTrack_public</a></strong> verwendet, der GPS-Daten von 92 Katzen im Raum Ås, nahe Oslo, enthält. Die Daten umfassen Zeitstempel sowie räumliche Positionen der Katzen während des Monats Mai 2021. Aus Datenschutzgründen sind die Koordinaten mit einem unbekannten räumlichen Versatz versehen, um die Anonymität der Katzenbesitzer*innen zu wahren.</p>
+<p>Die GPS-Katzendaten entsprechen der Lagrange-Perspektive, welche es ermöglicht, Individuen kontinuierlich zu verfolgen. Sie erlaubt die Analyse individueller Bewegungsparameter wie Distanz, Geschwindigkeit und Aufenthaltsgebiete (Laube, 2017).</p>
+<p>Für die Unterteilung der Tageszeiten wurden zusätzlich <a href="https://www.timeanddate.com/sun/norway/oslo?month=5&amp;year=2021">tages- und ortspezifische Informationen</a> zu Sonnenauf- und untergang sowie den Morgen- und Abenddämmerungszeiten integriert. Um die Home Ranges nach Katzentyp (urban/ländlich) unterscheiden zu können, wurden Daten aus <a href="https://download.geofabrik.de/europe/norway.html?utm">OpenStreetMap</a> zur Ableitung urbaner und ländlicher Landnutzungskategorien hinzugezogen.</p>
 <div id="c9407616-338c-4f20-8cd3-4603cf4fa5fe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;outputs_hidden&quot;:true}}" data-scrolled="true" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -347,8 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Anhand der GPS-Daten wurde die Zeitverzögerung zwischen aufeinanderfolgenden Positionen berechnet. Zur Qualitätssicherung wurden nur Segmente mit einer maximalen Zeitverzögerung von 5 Minuten berücksichtigt. Dieser Schwellenwert ist notwendig, da Bewegungsanalysen wie Geschwindigkeit und Distanz in der CMA stark von der zeitlichen Auflösung abhängen (Laube und Purves, 2011).</p>
-<p>Dieses Problem wird durch Laube und Purves (2011) als <em>«Granularity Grief»</em> beschrieben: Grosse Zeitabstände zwischen GPS-Punkten führen zu verzerrten Schätzungen von Geschwindigkeit und Distanz, da der tatsächliche Bewegungsweg zwischen Messpunkten unbekannt ist. Die Qualitätsanalyse zeigte, dass alle Katzen längere Zeitverzögerungen aufweisen. Selbst bei der am stärksten betroffenen Katze bleiben 86% der Segmente gültig, weshalb vorerst keine Individuen ausgeschlossen wurden. Für die validen Segmente wurden anschliessend Distanz und Geschwindigkeit zwischen aufeinanderfolgenden Punkten berechnet.</p>
-<p>Die Distanz wurde pro Stunde standardisiert, um Unterschiede in der Länge der Tageszeitkategorien auszugleichen. Die Auswertung erfolgt deskriptiv anhand von Kennwerten und Boxplots auf Segment- und Individualebene, wobei nur Katzen mit vorhandenen Daten in allen Tageszeitkategorien berücksichtigt wurden.</p>
+<p>Dieses Problem wird durch Laube und Purves (2011) als <em>«Granularity Grief»</em> beschrieben: Grosse Zeitabstände zwischen GPS-Punkten führen zu verzerrten Schätzungen von Geschwindigkeit und Distanz, da der tatsächliche Bewegungsweg zwischen Messpunkten unbekannt ist. Die Qualitätsanalyse zeigte, dass alle Katzen längere Zeitverzögerungen aufweisen. Selbst bei der am stärksten betroffenen Katze bleiben 86% der Segmente gültig, weshalb vorerst keine Individuen ausgeschlossen wurden.</p>
+<p>Für valide Segmente wurden anschliessend Distanz und Geschwindigkeit zwischen aufeinanderfolgenden GPS-Punkten berechnet. Die Distanz wurde pro Stunde standardisiert, um die unterschiedlich lange Dauer der Tageszeitkategorien vergleichbar zu machen. Für die Visualisierung wurden die Bewegungsparameter pro Katze und Tageszeit zusammengefasst. Berücksichtigt wurden nur Katzen, für die gültige Segmente in allen vier Tageszeitkategorien vorhanden waren.</p>
 <div id="3af5c23b-2693-45c1-a3ec-d2926a57a0d6" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
@@ -601,8 +601,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="home-ranges" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="home-ranges"><span class="header-section-number">3.2.2</span> Home Ranges</h3>
-<p>Um die Grösse der Streifgebiete zu bestimmen wurden <strong>Home Ranges</strong> mittels Kernel Density Estimation (KDE) berechnet. Die KDE schätzt die räumliche Aufenthaltswahrscheinlichkeit der Katzen und ermöglicht dadurch eine realistische Abgrenzung von Bereichen mit unterschiedlicher Nutzungsintensität. Da die KDE die räumliche Verteilung der GPS-Punkte nutzt, eignet sie sich auch für Datensätze mit unregelmässigen Zeitabständen zwischen den GPS-Messungen, wie die vorliegenden Katzendaten (Worton, 1989; Laube, 2014).</p>
-<p>Aus den GPS-Punkten wurde zunächst die Utilization Distribution bestimmt und daraus die 95%-KDE Home Range abgeleitet, welche jene Fläche umfasst, in der sich eine Katze mit 95% Wahrscheinlichkeit aufhält. Die Flächen wurden in Hektaren berechnet. Ergänzend wurde eine Sensitivitätsanalyse mit der 80%-KDE durchgeführt, die den stärker genutzten Kernbereich beschreibt.</p>
+<p>Um die Grösse der Streifgebiete abzuschätzen wurden für jede Katze <strong>Home Ranges</strong> mittels Kernel Density Estimation (KDE) berechnet. Die KDE schätzt aus der räumlichen Verteilung der GPS-Punkte eine <em>Utilization Distribution</em>, also eine Verteilung der Raumnutzung. Daraus wurden die 95 %-KDE als Schätzung der gesamten Home Range und zum Vergleich die 80 %-KDE als stärker genutzter Kernbereich abgeleitet. Die Berechnung erfolgte mit der Funktion <code>kernelUD()</code> aus dem Paket <code>adehabitatHR</code> (Worton, 1989).</p>
+<p>Da die KDE auf der räumlichen Punktverteilung basiert, eignet sie sich für den Vergleich der Raumnutzung zwischen Individuen. Unregelmässige Messintervalle, GPS-Ungenauigkeiten und der räumliche Versatz der Koordinaten können die Ergebnisse jedoch beeinflussen. Die berechneten Home Ranges wurden deshalb als vergleichende Schätzungen und nicht als exakte territoriale Grenzen interpretiert.</p>
 <div id="23686d2d-ffe4-4469-9c4b-209502ac0845" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
@@ -848,11 +848,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="begegnungen" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="begegnungen"><span class="header-section-number">3.2.3</span> Begegnungen</h3>
-<p>Für die Analyse der Begegnungen wurde eine <strong>Begegnung als raumzeitliche Nähe zweier Katzen</strong> definiert. Zwei GPS-Fixes wurden als Begegnung gewertet, wenn sie höchstens 10 Meter voneinander entfernt waren und die Zeitstempel höchstens 60 Sekunden auseinanderlagen. Die Wahl dieser Schwellenwerte berücksichtigt sowohl die GPS-Ungenauigkeit als auch die zeitlichen Unterschiede zwischen den Aufzeichnungen der Punkte. Die Schwellenwerte orientieren sich an typischen GPS-Fehlergrössen sowie an Ansätzen der raumzeitlichen Interaktionsanalyse in der Bewegungsökologie (Dodge et al., 2008; Long et al., 2014).</p>
-<p>Da ein direkter Vergleich aller GPS-Punkte mit allen anderen Punkten aufgrund der Datenmenge rechnerisch ineffizient wäre, wurde zunächst eine zeitliche Vorselektion durchgeführt. Dazu wurde jeder Zeitstempel auf die jeweilige Minute abgerundet und als neue Variable gespeichert. Die abgerundeten Minuten wurden dabei nicht als exakte Zeitpunkte verwendet, sondern dienten nur als grobe Zeitfenster für den Vergleich. Anschliessend wurde für jeden Tag eine zweite Vergleichstabelle erstellt, in der jeder GPS-Fix dreimal dupliziert wurde: einmal mit einem Zeitversatz von −1 Minute, einmal ohne Zeitversatz und einmal mit +1 Minute. Dadurch konnten auch GPS-Fixes berücksichtigt werden, die zwar weniger als 60 Sekunden auseinanderlagen, aber in zwei benachbarte Minuten fielen. Über diese verschobenen Minuten-Zeitfenster wurden die Daten mittels <code>inner_join</code> zusammengeführt. Dadurch entstanden nur solche Punktpaare, deren Zeitstempel innerhalb eines potenziell relevanten Zeitfensters lagen.</p>
-<p>Im nächsten Schritt wurden Paare derselben Katze sowie doppelte Paarungen entfernt, sodass jede Kombination zweier Katzen nur einmal berücksichtigt wurde. Für die verbleibenden Punktpaare wurde anschliessend die exakte Zeitdifferenz in Sekunden anhand der ursprünglichen Zeitstempel berechnet und auf maximal 60 Sekunden gefiltert. Danach wurde anhand der X- und Y-Koordinaten im projizierten Koordinatensystem die euklidische Distanz zwischen den beiden GPS-Positionen berechnet. Nur Punktpaare, die sowohl die zeitliche Bedingung von ≤ 60 s als auch die räumliche Bedingung von ≤ 10 m erfüllten, wurden als Begegnungen klassifiziert.</p>
+<p>Für die Analyse der Begegnungen wurde eine <strong>Begegnung als raumzeitliche Nähe zweier Katzen</strong> definiert. Zwei GPS-Fixes wurden als Begegnung gewertet, wenn sie höchstens 10 m voneinander entfernt waren und ihre Zeitstempel höchstens 60 s auseinanderlagen. Die Wahl dieser Schwellenwerte berücksichtigt sowohl mögliche GPS-Ungenauigkeiten als auch zeitliche Unterschiede zwischen den Aufzeichnungen. Die Schwellenwerte orientieren sich an typischen GPS-Fehlergrössen sowie an Ansätzen der raumzeitlichen Interaktionsanalyse in der Bewegungsökologie (Dodge et al., 2008; Long et al., 2014).</p>
+<p>Da ein direkter Vergleich aller GPS-Punkte mit allen anderen Punkten aufgrund der Datenmenge rechnerisch ineffizient wäre, wurde zunächst eine zeitliche Vorselektion durchgeführt. Dazu wurde jeder Zeitstempel auf die jeweilige Minute abgerundet und als neue Variable gespeichert. Die abgerundeten Minuten wurden dabei nicht als exakte Zeitpunkte verwendet, sondern dienten nur als grobe Zeitfenster für den Vergleich. Anschliessend wurde für jeden Tag eine zweite Vergleichstabelle erstellt, in der jeder GPS-Fix dreimal dupliziert wurde: einmal mit einem Zeitversatz von −1 Minute, einmal ohne Zeitversatz und einmal mit +1 Minute. Dadurch konnten auch GPS-Fixes berücksichtigt werden, die zwar weniger als 60 s auseinanderlagen, aber in zwei benachbarte Minuten fielen.</p>
+<p>Über diese verschobenen Minuten-Zeitfenster wurden potenzielle Punktpaare mittels <code>inner_join</code> gebildet. Anschliessend wurden Paare derselben Für die verbleibenden Punktpaare wurde die exakte Zeitdifferenz anhand der ursprünglichen Zeitstempel berechnet und auf maximal 60 s gefiltert. Danach wurde anhand der X- und Y-Koordinaten die euklidische Distanz zwischen den beiden GPS-Positionen berechnet. Nur Punktpaare, die sowohl die zeitliche Bedingung von ≤ 60 s als auch die räumliche Bedingung von ≤ 10 m erfüllten, wurden als Begegnungen klassifiziert.</p>
 <p>Dieses Vorgehen reduziert die Anzahl notwendiger Distanzberechnungen deutlich, da räumliche Distanzen nur noch für zeitlich mögliche Begegnungspaare berechnet werden. Die Analyse wurde tageweise durchgeführt und die resultierenden Begegnungen wurden anschliessend zu einem Gesamtdatensatz zusammengeführt.</p>
-<div id="16cb2773-a7e7-4712-ade3-7a0b7590c84b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;outputs_hidden&quot;:true}}" data-scrolled="true" data-execution_count="7">
+<p>Um die Begegnungen räumlich einzuordnen, wurde für jede Begegnung bestimmt, wie viele 95 %-KDE-Home-Ranges sich am jeweiligen Begegnungsort überlappten. Dadurch konnte untersucht werden, ob Begegnungen vor allem in Bereichen gemeinsamer Raumnutzung auftreten.</p>
+<div id="16cb2773-a7e7-4712-ade3-7a0b7590c84b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;outputs_hidden&quot;:true}}" data-scrolled="true" data-execution_count="66">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># head(cats_all_joined)</span></span>
@@ -1135,7 +1136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="4"><span class="header-section-number">4</span> Resultate</h1>
 <section id="aktivitätsmuster-1" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="aktivitätsmuster-1"><span class="header-section-number">4.1</span> Aktivitätsmuster</h2>
-<p>Die Analyse der Geschwindigkeit und zurückgelegten Distanz als Proxy für die Aktivität zeigt deutliche Unterschiede zwischen den Tageszeiten und weist darauf hin, dass die untersuchten Katzen ihre höchste Aktivität während der Abenddämmerung und der Nacht haben (siehe Abb. 1). Die höchsten mittleren Geschwindigkeiten waren nachts (0.087 m/s) und während der Abenddämmerung (0.086 m/s), während sie tagsüber bei 0.074 m/s und in der Morgendämmerung bei 0.071 m/s lagen. Ein vergleichbares Muster zeigt sich bei der zurückgelegten Distanz pro Stunde (Nacht: 313 m/h, Abenddämmerung: 310 m/h, Tag: 267 m/h, Morgendämmerung: 255 m/h). Gleichzeitig zeigt sich eine hohe individuelle Variabilität zwischen den Katzen (siehe Abb. 1)</p>
+<p>Die Analyse der Geschwindigkeit und zurückgelegten Distanz als Proxy für die Aktivität zeigt Unterschiede zwischen den Tageszeiten. Auf Basis der katzenspezifischen Mittelwerte waren die untersuchten Katzen während der Nacht und der Abenddämmerung am aktivsten (Abb. 1). Die höchsten mittleren Geschwindigkeiten waren nachts (0.087 m/s) und während der Abenddämmerung (0.086 m/s), während sie tagsüber bei 0.074 m/s und in der Morgendämmerung bei 0.071 m/s lagen. Ein vergleichbares Muster zeigt sich bei der zurückgelegten Distanz pro Stunde (Nacht: 313 m/h, Abenddämmerung: 310 m/h, Tag: 267 m/h, Morgendämmerung: 255 m/h). Gleichzeitig zeigt sich eine hohe individuelle Variabilität zwischen den Katzen (siehe Abb. 1).</p>
 <div id="c2e35cae-9110-4efb-81cb-f71bff7dcaa2" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1326,7 +1327,7 @@ Abbildung&nbsp;1: Tageszeitliche Aktivitätsmuster der Katzen (links: Mittelwert
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-fig-plot2" class="cell" data-execution_count="46">
+<div id="cell-fig-plot2" class="cell" data-execution_count="67">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">13</span>, <span class="at">repr.plot.height =</span> <span class="dv">9</span>)</span>
@@ -1341,13 +1342,13 @@ Abbildung&nbsp;1: Tageszeitliche Aktivitätsmuster der Katzen (links: Mittelwert
 <img src="Semesterproject_final_files/figure-html/fig-plot2-output-1.png" width="780" height="540" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2: Kernel-Density-basierte Home-Range-Schätzung (95 % und 80% UD). Die Abbildung zeigt die räumliche Nutzung der 92 Katzen basierend auf der Kernel Density Estimation (KDE)
+Abbildung&nbsp;2: Kernel-Density-basierte Home-Range-Schätzung der 92 Katzen. Links: 95 %-KDE Home Ranges; rechts: 80 %-KDE Kernbereiche.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Die Verteilung der Flächengrössen war stark rechtsschief, was, wie in Abb. 3 sichtbar, auf wenige Individuen mit aussergewöhnlich grosse Home Ranges zurückzuführen ist.</p>
+<p>Die Verteilung der Flächengrössen war stark rechtsschief. Wie in Abb. 3 sichtbar, ist dies auf wenige Individuen mit aussergewöhnlich grossen Home Ranges zurückzuführen.</p>
 <div id="df6d7901-5e28-48a9-b71c-5a5b3efe13d1" class="cell" data-execution_count="43">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1491,7 +1492,7 @@ Abbildung&nbsp;3: Häufigkeit der Katzen für verschiedene Kategorien der Gröss
 </div>
 </div>
 </div>
-<p>Ein Vergleich zwischen urbanen (urban) und ländlichen (rural) Katzen zeigt eindrücklich auf, dass ländliche Katzen tendenziell grössere Home Ranges und eine grössere Variabilität davon aufweisen als urbane Katzen. Urbane Katzen nutzten hingegen kleinere und räumlich stärker konzentrierte Gebiete (siehe Abb. 4).</p>
+<p>Der Vergleich zwischen urbanen und ländlichen Katzen deutet darauf hin, dass ländliche Katzen tendenziell grössere Home Ranges und eine stärkere Variabilität aufweisen als urbane Katzen. Urbane Katzen nutzten dagegen kleinere und räumlich stärker konzentrierte Gebiete (Abb. 4).</p>
 <div id="1d398c75-bdb4-4e2e-9b79-f31fd875579e" class="cell" data-execution_count="54">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1585,7 +1586,7 @@ Abbildung&nbsp;3: Häufigkeit der Katzen für verschiedene Kategorien der Gröss
 <span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_hr_class</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-fig-plot4" class="cell" data-execution_count="56">
+<div id="cell-fig-plot4" class="cell" data-execution_count="68">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">13</span>, <span class="at">repr.plot.height =</span> <span class="dv">9</span>)</span>
@@ -1600,7 +1601,7 @@ Abbildung&nbsp;3: Häufigkeit der Katzen für verschiedene Kategorien der Gröss
 <img src="Semesterproject_final_files/figure-html/fig-plot4-output-1.png" width="780" height="540" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;4: Vergleich der Home Range-Grössen zwischen urbanen und ländlichen Katzen. Links: Der Boxplot zeigt die Grösse der Home Range in Abhängigkeit des Katzentyps «rural» und «urban. Rechts: Die Abbildung visualisiert, was der Boxplot dargestellt hat. Grün sind Home Ranges von «ruralen» Katzen, grau von «urban» Katzen. (Abb. links: Skala ist logarithmisch)
+Abbildung&nbsp;4: Vergleich der Home-Range-Grössen zwischen urbanen und ländlichen Katzen. Links: 95 %-KDE Home-Range-Grösse nach dominantem Landtyp innerhalb der Home Range; die y-Achse ist logarithmisch skaliert. Rechts: Räumliche Darstellung der als urban oder ländlich klassifizierten Home Ranges.
 </figcaption>
 </figure>
 </div>
@@ -1609,7 +1610,7 @@ Abbildung&nbsp;4: Vergleich der Home Range-Grössen zwischen urbanen und ländli
 </section>
 <section id="begegnungen-1" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="begegnungen-1"><span class="header-section-number">4.3</span> Begegnungen</h2>
-<p>Die Analyse identifiziert mehrere Begegnungen von Katzenpaaren. Die Häufigkeit der Begegnungen variiert stark zwischen den Individuen. Zeitlich zeigen sich klare Muster: Die meisten Begegnungen treten während der Nacht auf, insbesondere zwischen 00:00 und 01:00 Uhr oder in den Morgenstunden (08:00–11:00 Uhr) sowie am späten Abend (21:00–22:00 Uhr), während in den frühen Morgenstunden vergleichsweise wenige Begegnungen auftreten (siehe Abb. 5)</p>
+<p>Die Analyse identifiziert mehrere Begegnungen zwischen Katzenpaaren. Die Häufigkeit dieser Ereignisse variiert stark zwischen den Individuen. Zeitlich traten Begegnungen besonders häufig in der Nacht sowie am Morgen und späten Abend auf, während in den frühen Morgenstunden weniger Begegnungen registriert wurden (Abb. 5).</p>
 <div id="cbb33590-eea7-4391-8eca-25acc11e1662" class="cell" data-execution_count="57">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1864,7 +1865,7 @@ Abbildung&nbsp;5: Darstellung der Häufigkeit von „Begegnungen“ von Katzen (
 <span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a><span class="co"># barplot_meet_hr</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-fig-plot6" class="cell" data-execution_count="64">
+<div id="cell-fig-plot6" class="cell" data-execution_count="69">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">13</span>, <span class="at">repr.plot.height =</span> <span class="dv">9</span>)</span>
@@ -1879,7 +1880,7 @@ Abbildung&nbsp;5: Darstellung der Häufigkeit von „Begegnungen“ von Katzen (
 <img src="Semesterproject_final_files/figure-html/fig-plot6-output-1.png" width="780" height="540" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6: Links: Der Zusammenhang zwischen Home Range-Überlappung und «Begegnungen». Rechts: Die Abbildung zeigt die Anzahl von Begegnungen in Abhängigkeit der räumlichen Überlappung.
+Abbildung&nbsp;6: Räumliche Verteilung der Begegnungen und Zusammenhang mit überlappenden Home Ranges. Links: Begegnungspunkte innerhalb der 95 %-KDE Home Ranges. Rechts: Anzahl Begegnungen in Abhängigkeit von der Anzahl überlappender Home Ranges.
 </figcaption>
 </figure>
 </div>
@@ -1889,7 +1890,7 @@ Abbildung&nbsp;6: Links: Der Zusammenhang zwischen Home Range-Überlappung und �
 </section>
 <section id="diskussion" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Diskussion</h1>
-<p>Die Aktivitätsmuster zeigen, dass die untersuchten Katzen insbesondere während der Abenddämmerung und der Nacht aktiv sind. Dieses Muster entspricht dem häufig beschriebenen dämmerungs- und nachtaktiven Verhalten von Katzen (Merčnik et al., 2023). Die verwendeten Bewegungsparameter Geschwindigkeit und zurückgelegte Distanz stellen zentrale Grössen der Computational Movement Analysis dar und ermöglichen eine quantitative Analyse des Bewegungsverhaltens der Katzen aus Ás (Dodge et al., 2008).</p>
+<p>Die Aktivitätsmuster zeigen, dass die untersuchten Katzen insbesondere während der Abenddämmerung und der Nacht aktiv sind. Dieses Muster entspricht dem häufig beschriebenen dämmerungs- und nachtaktiven Verhalten von Katzen (Merčnik et al., 2023). Die verwendeten Bewegungsparameter Geschwindigkeit und zurückgelegte Distanz stellen zentrale Grössen der Computational Movement Analysis dar und ermöglichen eine quantitative Analyse des Bewegungsverhaltens der Katzen aus Ås (Dodge et al., 2008).</p>
 <p>Gleichzeitig bringen die Resultate die von Laube (2014) beschriebene Problematik des „Semantic Gap“ hervor. Obwohl erhöhte Geschwindigkeiten und grössere Distanzen auf höhere Aktivität hindeuten, kann aus den Bewegungsdaten nicht eindeutig auf das tatsächliche Verhalten geschlossen werden. Eine erhöhte Geschwindigkeit kann beispielsweise Jagdverhalten oder Ortswechsel widerspiegeln. Dies bestätigt auch Shamoun-Baranes et al.&nbsp;(2012).</p>
 <p>Der verwendete Schwellenwert von 5 Minuten für zulässige Zeitabstände stellt einen methodischen Kompromiss zwischen Datenqualität und Datenverlust dar. Zwar mindert er das Problem des «Granularity Griefs», das Problem bleibt aber bestehen und «verpasst» oder unterschätzt kurzfristige Bewegungen (Laube und Purves, 2011). Bei grossen Zeitabständen zwischen Messungen ist unklar, ob die Katze konstant gleich schnell unterwegs war oder zwischen schnellen und langsamen Bewegungen wechselte. Dies wurde auch im Kurs besprochen.</p>
 <p>Die Analyse der Home Ranges zeigt deutliche Unterschiede zwischen urbanen und ländlichen Katzen. Die Einteilung urban/rural ist in diesem Datensatz nur eingeschränkt interpretierbar, da es sich insgesamt um ein ländlich geprägtes Gebiet handelt. Trotzdem liefert sie wichtige Hinweise für weitere Forschung, hier genauer hinzuschauen.</p>
