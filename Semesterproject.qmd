@@ -609,6 +609,33 @@ ggplot(rq1_speed_summary_per_cat_filtered, aes(x = daytime, y = mean_speed_m_s))
   theme_minimal()
 ```
 
+```{r}
+ggplot(rq1_speed_summary_per_cat_filtered, aes(x = daytime, y = mean_speed_m_s)) +
+  geom_boxplot(
+    width = 0.5,
+    outlier.shape = NA,
+    fill = "grey90",
+    color = "grey30"
+  ) +
+  geom_jitter(
+    width = 0.12,
+    alpha = 0.35,
+    size = 1.4,
+    color = "grey20"
+  ) +
+  labs(
+    x = "Time of day",
+    y = "Mean speed per cat [m/s]",
+    title = "Cat speed by time of day",
+    subtitle = "Each point represents one cat"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+```
+
 #### Distance by daytime
 
 **`How does traveled distance vary between times of the day`**
@@ -668,6 +695,33 @@ ggplot(rq1_distance_per_cat, aes(x = daytime, y = distance_per_hour_m)) +
     title = "Travelled distance by time of day"
   ) +
   theme_minimal()
+```
+
+```{r}
+ggplot(rq1_distance_per_cat, aes(x = daytime, y = distance_per_hour_m)) +
+  geom_boxplot(
+    width = 0.5,
+    outlier.shape = NA,
+    fill = "grey90",
+    color = "grey30"
+  ) +
+  geom_jitter(
+    width = 0.12,
+    alpha = 0.35,
+    size = 1.4,
+    color = "grey20"
+  ) +
+  labs(
+    x = "Time of day",
+    y = "Distance per hour per cat (m/h)",
+    title = "Travelled distance by time of day",
+    subtitle = "Each point represents one cat"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
 ```
 
 ```{r}
@@ -872,6 +926,38 @@ ggplot(hr_area_summary, aes(x = "", y = area_ha)) +
 ```
 
 ```{r}
+ggplot(hr_area_summary, aes(x = "", y = area_ha)) +
+  geom_boxplot(
+    width = 0.3,
+    outlier.shape = NA,
+    fill = "grey90",
+    color = "grey30"
+  ) +
+  geom_jitter(
+    width = 0.08,
+    alpha = 0.35,
+    size = 1.4,
+    color = "grey20"
+  ) +
+  scale_y_log10(
+    limits = c(0.1, NA),
+    breaks = c(0.1, 1, 10, 100),
+    labels = c("0.1", "1", "10", "100")
+  ) +
+  labs(
+    x = NULL,
+    y = "95% KDE home range area [ha, log scale]",
+    title = "Variation in home range size between cats",
+    subtitle = "Each point represents one cat"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+```
+
+```{r}
 summary(hr_all$area_ha)
 ```
 
@@ -882,8 +968,8 @@ hr_area_summary_classified <- hr_area_summary %>%
   mutate(
     area_class = cut(
       area_ha,
-      breaks = c(0, 0.5, 1, 2, 4, 10, Inf),
-      labels = c("0–0.5", "0.5–1", "1–2", "2–4", "4–10", ">10"),
+      breaks = c(0, 1, 2, 4, 10, Inf),
+      labels = c("0–1", "1–2", "2–4", "4–10", ">10"),
       include.lowest = TRUE,
       right = FALSE
     )
@@ -907,6 +993,35 @@ ggplot(hr_area_summary_classified, aes(x = area_class)) +
     subtitle = "Home range areas grouped into size classes"
   ) +
   theme_minimal()
+```
+
+```{r}
+ggplot(hr_area_summary_classified, aes(x = area_class)) +
+  geom_bar(
+    fill = "grey90",
+    color = "grey30",
+    linewidth = 0.3
+  ) +
+  geom_text(
+    stat = "count",
+    aes(label = after_stat(count)),
+    vjust = -0.3,
+    size = 3
+  ) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.1))
+  ) +
+  labs(
+    x = "95% KDE home range area [ha]",
+    y = "Number of cats",
+    title = "Distribution of home range sizes",
+    subtitle = "Home range areas grouped into size classes"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
 ```
 
 ### Sensitivitätsanalyse mit 80% KDE Home Range
@@ -1202,11 +1317,87 @@ ggplot(hr_area_environment_filtered, aes(x = cat_environment, y = area_ha)) +
 ```
 
 ```{r}
+ggplot(hr_area_environment_filtered, aes(x = cat_environment, y = area_ha)) +
+  geom_boxplot(
+    width = 0.5,
+    outlier.shape = NA,
+    fill = "grey90",
+    color = "grey30"
+  ) +
+  geom_jitter(
+    width = 0.12,
+    alpha = 0.35,
+    size = 1.4,
+    color = "grey20"
+  ) +
+  scale_y_log10(
+    limits = c(0.1, NA),
+    breaks = c(0.1, 1, 10, 100),
+    labels = c("0.1", "1", "10", "100")
+  ) +
+  labs(
+    x = "Dominant environment of home range",
+    y = "95% KDE home range area [ha, log scale]",
+    title = "Home range size of urban and rural cats",
+    subtitle = "Cats classified by dominant OSM land-use area within their home range"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+```
+
+```{r}
 head(hr_area_environment_filtered)
 ```
 
 ```{r}
 length(unique((hr_area_environment_filtered$cat_id)))
+```
+
+```{r}
+# Homeranges einfärben nach urban / rural
+
+hr_all_environment <- hr_all %>%
+  left_join(
+    hr_area_environment_filtered %>%
+      st_drop_geometry() %>%   # falls es ein sf-Objekt ist
+      select(cat_id, cat_environment, urban_share, rural_share, classified_share),
+    by = "cat_id"
+  )
+```
+
+```{r}
+ggplot(hr_all_environment) +
+  geom_sf(
+    aes(fill = cat_environment),
+    alpha = 0.45,
+    color = "grey30",
+    linewidth = 0.3
+  ) +
+  coord_sf(crs = st_crs(hr_all), datum = st_crs(hr_all)) +
+  scale_fill_manual(
+    values = c(
+      "urban" = "grey70",
+      "rural" = "darkseagreen3"
+    ),
+    labels = c(
+      "urban" = "Urban",
+      "rural" = "Rural"
+    ),
+    na.value = "white"
+  ) +
+  labs(
+    fill = "Dominant environment",
+    title = "95% KDE home ranges classified as urban or rural",
+    subtitle = "Classification based on dominant OSM land-use area within each home range"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
 ```
 
 ## RQ3: Detect Meet-Patterns
@@ -1662,6 +1853,34 @@ ggplot(cat_meets_time, aes(x = hour)) +
   theme_minimal()
 ```
 
+```{r}
+ggplot(cat_meets_time, aes(x = hour)) +
+  geom_histogram(
+    binwidth = 1,
+    boundary = 0,
+    fill = "grey90",
+    color = "grey30",
+    linewidth = 0.3
+  ) +
+  scale_x_continuous(
+    breaks = 0:23
+  ) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.1))
+  ) +
+  labs(
+    x = "Hour of day",
+    y = "Number of meet-fixes",
+    title = "Cat meetings by hour of day",
+    subtitle = "Meet-fix: distance ≤ 10 m and time difference ≤ 60 s"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
+  )
+```
+
 #### Welche Katzen treffen sich? HeatMap
 
 ```{r}
@@ -1702,7 +1921,7 @@ meet_points <- cat_meets %>%
 
 ```{r}
 ggplot() +
-  geom_sf(data = hr_all, aes(fill = cat_id), alpha = 0.15, show.legend = FALSE) +
+  geom_sf(data = hr_all_environment, aes(fill = cat_environment), alpha = 0.15) +
   geom_sf(data = meet_points, size = 1, alpha = 0.6) +
   coord_sf(crs = st_crs(25833), datum = st_crs(25833)) +
   labs(

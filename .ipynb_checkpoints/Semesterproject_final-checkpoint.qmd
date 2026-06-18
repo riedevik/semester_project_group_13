@@ -1,0 +1,210 @@
+---
+title: Patterns in Domestic Cat Movement Data
+subtitle: Semesterproject Group 13
+author: Anna Kessler, Viktoria Rieder
+date: today
+format:
+  html:
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    number-sections: true
+execute:
+  error: true
+  warning: false
+  message: false
+lang: de
+bibliography: bibliography.bib
+jupyter: ir
+---
+
+
+```{r}
+## Libraries laden
+
+library(tidyverse)
+library(sf)
+library(hms)
+library(forcats)
+library(tmap)
+library(patchwork)
+library(adehabitatHR)
+library(scales)
+library(knitr)
+library(IRdisplay)
+```
+
+# Abstract
+
+In dieser Arbeit werden GPS-Daten von 92 Katzen aus dem Raum Ás (Norwegen) im Rahmen der Computational Movement Analysis (CMA) untersucht. Analysiert werden tageszeitliche Aktivitätsmuster, Home Ranges sowie raumzeitliche Begegnungen. Die Resultate zeigen erhöhte Aktivität in der Abenddämmerung und in der Nacht, deutliche Unterschiede in der Home Range-Grösse (insbesondere urbane vs. ländliche Katzen-Typen) sowie mehr Begegnungen in überlappenden Home Ranges, deren Häufigkeit jedoch bei mehr als vier Überlappungen wieder abnimmt. Insgesamt verdeutlichen die Ergebnisse sowohl Möglichkeiten als auch Grenzen GPS-basierter Bewegungsanalysen.
+
+# Einleitung
+
+Katzen sind Raubtiere, deren Bewegungsverhalten entscheidend für das Verständnis ihrer Raumnutzung und ökologischen Auswirkungen ist, was sie besonders geeignet für Bewegungsanalysen macht (Bischof et al., 2022). Bewegungsdaten wie GPS-Daten liefern dabei raumzeitliche Informationen, die sowohl Positionen als auch deren Veränderung über die Zeit beschreiben und typisch sind in der Computational Movement Analysis (CMA) (Laube, 2014; Dodge et al., 2013).  In diesem Projekt werden GPS-Daten von 92 Katzen im Raum Ás (nahe Oslo) analysiert. Ziel ist die Untersuchung ihres Bewegungsverhaltens anhand verschiedener Methoden der Bewegungsanalyse. Im Zentrum stehen drei Forschungsfragen (RQ):
+
+* RQ1: Zu welcher Tageszeit sind Katzen am aktivsten?
+* RQ2: Wie gross sind die Streifgebiete der Katzen und wie stark unterscheiden sie sich zwischen Individuen? 
+* RQ3: Wie häufig begegnen sich Katzen bei einer bestimmten Katzendichte?
+
+Katzen gelten als überwiegend dämmerungs- und nachtaktive Tiere, deren Aktivität stark von Lichtbedingungen beeinflusst wird (Merčnik et al., 2023). Sie werden oft als territorial eingeschätzt - die Literatur zeigt jedoch, dass territoriales Verhalten kontextabhängig ist und nicht bei allen Katzen gleich ausgeprägt auftritt (Crowell-Davis et al., 2004). 
+
+Das Konzept der Home Range beschreibt den regelmässig genutzten Lebensraum eines Tieres zur Nutzung essenzieller Ressourcen (Powell und Mitchell, 2012). GPS-basierte Methoden erlauben präzise Schätzungen, etwa mittels der Kernel Density-Methode (Worton, 1989), welche in dieser Arbeit verwendet wird.
+
+# Material und Methoden
+
+## Daten
+
+Für die Analyse wurde der öffentlich auf GitHub verfügbare Datensatz **[CatTrack_public](https://github.com/richbi/CatTrack_public)** verwendet, der GPS-Daten von 92 Katzen im Raum Oslo (Ás) enthält. Die Daten umfassen Zeitdaten sowie räumliche Positionen der Katzen während des Monats Mai 2021 und sind mit einem unbekannten räumlichen Versatz ausgestattet, um die Anonymität der Katzenbesitzer*innen zu wahren. 
+
+GDie GPS-Katzendaten entsprechen der Lagrange-Perspektive, welche es ermöglicht, Individuen kontinuierlich zu verfolgen. Sie erlaubt die Analyse individueller Bewegungsmuster wie Distanz, Geschwindigkeit und Aufenthaltsgebiete (Laube, 2017). .
+
+Für die Unterteilung der Tageszeiten wurden zusätzlich [tages- und ortspezifische  Informationen](https://www.timeanddate.com/sun/norway/oslo?month=5&year=2021) zu Sonnenauf- und untergang sowie den Morgen- und Abenddämmerungszeiten integriert. Um die Home Ranges nach Katzentyp (urban/ländlich) unterscheiden zu können, wurden Daten aus [OpenStreetMap](https://download.geofabrik.de/europe/norway.html?utm) zur Identifikation der Landschaftstypen hinzugezogen. 
+
+```{r}
+#| collapsed: true
+#| jupyter: {outputs_hidden: true}
+#| scrolled: true
+###############################
+# Katzendaten einlesen
+###############################
+
+## Gemäss Datenquelle sei es EPSG 25833, aber die Koordinaten sind in WGS84.
+
+cats_list <- list()
+
+for (i in 1:92) {
+  file_path <- paste0("cat_GPS_data/cat_", i, ".csv")
+  
+  cats_list[[as.character(i)]] <- read_delim(file_path, delim = ",") %>%
+    mutate(cat_id = i)
+}
+
+cats_all <- bind_rows(cats_list)
+
+## überprüfen
+# head(cats_all)
+
+## In sf-Objekt umwandeln
+
+## Die Koordinaten zeigen klar, dass es sich um geographische Koordinaten 
+## handeln muss (WGS84). Die Daten werden entsprechend mit WGS84 eingelesen 
+## und in EPSG 25833 transformiert für die weiteren Analysen.
+
+cats_all <- cats_all %>% 
+    st_as_sf(coords = c("x", "y"), crs = 4326) %>%
+    st_transform(crs = 25833)
+
+## überprüfen
+# head(cats_all)
+# min(cats_all$datetime)
+# max(cats_all$datetime)
+
+###############################
+# Daten zu Sonnenauf- und untergang einlesen
+###############################
+
+times <- read_delim("oslo_sun_times_may2021.csv", ";")
+# head(times)
+
+## Layers betrachten
+layers <- st_layers("ostlandet.gpkg")
+# print(layers)
+
+## Daten einlesen
+osm_landuse <- st_read(
+  "ostlandet.gpkg",
+  layer = "gis_osm_landuse_a_free",
+  quiet = TRUE)
+```
+
+## Methoden
+
+Die Analyse beleuchtet unterschiedliche Aspekte des Bewegungsverhaltens der 92 Katzen. Die Datenanalyse wurde in R (Version 4.5.1) durchgeführt. 
+
+### Aktivitätsmuster
+
+Für die Analyse wurden Geschwindigkeit und zurückgelegte Distanz als Proxies für Aktivität definiert. Beide sind zentrale Bewegungsparameter der Computational Movement Analysis (Dodge et al., 2008). Die GPS-Daten wurden mit Sonnenauf- und untergang sowie Dämmerungsphasen verknüpft und jedem GPS-Punkt eine Tageszeitkategorie, basierend auf biologischen Lichtverhältnissen, zugewiesen (siehe Tabelle 1).
+
+```{r}
+###############################
+# Tabellen joinen
+###############################
+
+## Zeit aus datetime extrahieren 
+
+cats_all <- cats_all %>%
+    mutate(day = day(datetime), time = as_hms(datetime))
+# head(cats_all)
+
+## Tabellen joinen über "day"
+
+cats_all_joined <- left_join(cats_all, times, by = "day")
+# head(cats_all_joined)
+
+###############################
+# Tageszeit zuweisen
+###############################
+
+cats_all_joined <- cats_all_joined %>%
+  mutate(daytime = case_when(
+      time >= sunrise & time <= sunset ~ "day",
+      time >= civil_dawn & time < sunrise ~ "dawn",
+      time > sunset & time <= civil_dusk ~ "dusk",
+      time < civil_dawn | time > civil_dusk ~ "night")
+  )
+# head(cats_all_joined)
+
+## Tabelle vereinfachen
+cats_all_joined <- cats_all_joined %>%
+    select(-c("sunrise", "sunset", "civil_dawn", "civil_dusk"))
+# head(cats_all_joined)
+
+## überprüfen
+# unique(cats_all_joined$daytime)
+
+## Speicherplatz freigeben
+# remove(cats_all)
+# remove(times)
+
+###############################
+# Tabelle Tageszeiten ausgeben
+###############################
+
+sun_table_description <- tibble(
+  variable = c("Morgendämmerung", "Tag", "Abenddämmerung", "Nacht"),
+  description = c(
+    "Bürgerliche Morgendämmerung bis Sonnenaufgang",
+    "Sonnenaufgang bis Sonnuntergang",
+    "Sonnenuntergang bis bürgerliche Abenddämmerung",
+    "Nachtstunden"), 
+  example = c(
+    "04:22 - 05:14",
+    "05:15 - 21:13",
+    "21:13 - 22:07",
+    "22:08 - 04:17")
+)
+
+cat("**Tabelle 1: Einteilung der Tageszeiten**\n\n")
+
+html_table <- knitr::kable(
+  sun_table_description,
+  format = "html",
+  col.names = c("Tageszeit", "Beschreibung", "Beispiel vom 1. Mai")
+)
+
+IRdisplay::display_html(as.character(html_table))
+```
+
+```{r}
+#| label: tbl-tageszeiten
+#| tbl-cap: Einteilung der Tageszeiten
+
+knitr::kable(
+  sun_table_description,
+  format = "html",
+  caption = "Einteilung der Tageszeiten",
+  col.names = c("Tageszeit", "Beschreibung", "Beispiel vom 1. Mai"),
+  align = c("l", "l", "l"),
+  table.attr = 'style="border-collapse: collapse; width: 100%;"'
+)
+```
