@@ -1,8 +1,6 @@
-.ipynb_checkpoints
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-ostlandet.gpkg
-./cat_GPS_data
+﻿.ipynb_checkpoints/
+Semesterproject_files/
+cat_GPS_data/
 *.csv
+*.gpkg
+Semesterproject_code.ipynb
